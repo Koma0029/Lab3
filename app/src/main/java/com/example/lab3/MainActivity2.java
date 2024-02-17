@@ -2,6 +2,7 @@ package com.example.lab3;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +23,7 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         // Register activity result launcher
-        cameraResult = registerForActivityResult(
+        ActivityResultLauncher<Intent> cameraResult = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
 
@@ -59,7 +60,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         btnPic.setOnClickListener(view -> {
             Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            cameraResut.launch(cameraIntent);
+            cameraResult.launch(cameraIntent);
 
         });
 
